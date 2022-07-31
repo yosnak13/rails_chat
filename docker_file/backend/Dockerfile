@@ -12,5 +12,10 @@ RUN bundle config --local set path 'backend/vendor/bundle' \
 
 COPY . $APP_ROOT
 
+COPY ./backend/entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+EXPOSE 3000
+
 # Start the main process.
 CMD ["rails", "server", "-b", "0.0.0.0"]
